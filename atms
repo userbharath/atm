@@ -1,0 +1,160 @@
+
+
+account_number = {
+    1234 : 2222,
+    2345 : 3333
+}
+
+balance = {
+    1234 : 0,
+    2345 : 0
+}
+
+def deposit():
+    try:
+        number = int(input('please enter your account number : '))
+        if number in account_number.keys():
+            pin = int(input('Enter your pin : '))
+            if pin == account_number[number]:
+                amount = int(input('Enter deposit amount : '))
+                balance[number] = balance[number] + amount
+                print('amount deposited succesfully')
+                print('your balance is ',balance[number])
+            else:
+                print('pin is incorrect try again')
+                for i in range(3):
+                    pin = int(input(f'Enter your pin {i+1} time(s) : '))
+
+                    if pin == account_number[number]:
+                        amount = int(input('Enter deposit amount : '))
+                        balance[number] = balance[number] + amount
+                        print('amount deposited succesfully')
+                        print('your balance is ', balance[number])
+                        break
+                    else:
+                        print('pin is incorrect')
+                else:
+                    print('too many attempts')
+        else:
+            print('enter valid account number !')
+    except ValueError:
+        print('string not allowed .')
+def withdraw():
+    try:
+        n = int(input('Enter your account number : '))
+        if n in account_number:
+            pin = int(input('plz enter your pin : '))
+            if pin == account_number[n]:
+                enter_amount = int(input('Enter amount to draw : '))
+                if enter_amount > balance[n]:
+                    print('\nyou dont have enough balance ')
+                    print('your available balance is ',balance[n])
+                else:
+                    balance[n] = balance[n] - enter_amount
+                    print('your available balance is ',balance[n])
+
+            else:
+                print('pin is incorrect ..try again')
+                for j in range(3):
+                    pin = int(input(f'plz enter your pin {j+1} time(s): '))
+                    if pin == account_number[n]:
+                        enter_amount = int(input('Enter amount to draw : '))
+                        if enter_amount > balance[n]:
+                            print('you dont have enough balance ')
+                            print('your available balance is ', balance[n])
+
+                        else:
+                            balance[n] = balance[n] - enter_amount
+                            print('your available balance is ', balance[n])
+                        break
+                    else:
+                        print('pin is incorrect..oops')
+                else:
+                    print('too many attempts ')
+
+        else:
+            print('enter a valid account number ')
+    except ValueError:
+        print('string not allowed')
+
+def check_balance():
+    n = int(input('Enter your account number : '))
+    if n in account_number:
+        pin = int(input('plz enter your pin : '))
+        if pin == account_number[n]:
+            print('your availale balance is ',balance[n])
+        else:
+            print('wrong pin..try again')
+            for i in range(3):
+                pin = int(input(f'plz enter your pin {i+1} time(s): '))
+                if pin == account_number[n]:
+                    print('your availale balance is ', balance[n])
+                    break
+
+            else:
+                print('too many attempts ! failed')
+    else:
+        print('wrong account number ')
+
+
+a = 1
+while a!=0:
+    print()
+    print('welcome to ATM machine ')
+    try:
+        n = int(input('''1 . Deposit \n2 . Withdraw\n3 . check balance\n4 . exit\n
+Please select your operation :'''))
+
+        if n <=4:
+            if n == 1 or 2 or 3 or 4:
+                if n == 1:
+                    deposit()
+                if n == 2:
+                    withdraw()
+                if n == 3:
+                    check_balance()
+                if n == 4:
+                    exit()
+            else:
+                print('Enter valid option(1,2,3,4)')
+
+        else:
+            print('invalid option')
+    except ValueError:
+        print('string not allowed')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
